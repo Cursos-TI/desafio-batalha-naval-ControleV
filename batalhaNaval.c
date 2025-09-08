@@ -35,7 +35,7 @@ int main() {
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-    int tabuleiro2 [10][10];
+    int tabuleiro2 [10][10] = {0};
     index = 0;
 
     // Posicionando as águas e navios.
@@ -98,6 +98,73 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+
+    int tabuleiro3 [10][10] = {0};
+    index = 0;
+
+    // Posicionando as habilidades.
+    for (int linha = 0; linha <= 9; linha++) {
+        for (int coluna = 0; coluna <= 9; coluna++) {
+
+            // Habilidade Cone.
+            if (linha >= 0 && linha <= 2  && coluna >= 0 && coluna <= 4){
+                if (linha == 0 && coluna == 2) {
+                    tabuleiro3[linha][coluna] = 3;
+
+                } else if (linha == 1 && coluna >= 1 && coluna <= 3){
+                    tabuleiro3[linha][coluna] = 3;
+
+                } else if (linha == 2){
+                    tabuleiro3[linha][coluna] = 3;
+                }
+                continue;
+            }
+
+            // Habilidade 'mais'.
+            if (linha >= 0 && linha <= 4  && coluna >= 5){
+                if (coluna == 7) {
+                    tabuleiro3[linha][coluna] = 3;
+
+                } else if (linha == 2){
+                    tabuleiro3[linha][coluna] = 3;
+                
+                // Se nenhuma das consições forem atendidas, preencha com água.
+                }
+                continue;
+            }
+
+            // Habilidade fade-out.
+            if (linha > 6) {
+                if (linha == 7 && coluna % 2 == 0) {
+                    tabuleiro3[linha][coluna] = 3;
+
+                } else if (linha == 8 && (coluna % 2 != 0)){
+                    tabuleiro3[linha][coluna] = 3;
+                    
+                } else if (linha == 9) {
+                    tabuleiro3[linha][coluna] = 3;
+                }
+                
+                continue;
+            }
+
+            tabuleiro3[linha][coluna] = 0;
+        }
+    }
+
+    // Exibindo o resultado no terminal.
+    printf("\nExemplo de tabuleiro 10x10 com habilidades.\n");
+    printf("˹.˺ A B C D E F G H I J\n");
+    printf("˻°˼ - - - - - - - - - -");
+    for (int linha = 0; linha <= 9; linha++) {
+        printf("\n%d | ", index);
+        index++;
+
+        for (int coluna = 0; coluna <= 9; coluna++) {
+            printf("%d ", tabuleiro3[linha][coluna]);
+        }
+    }
+    printf("\n");
 
     return 0;
 }
